@@ -1,0 +1,11 @@
+{
+  "name": "z-app-name",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ronin-mocks": "^0.1.6",
+    "ronin-server": "^0.1.1"
+  }
+}
