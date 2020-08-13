@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: pmckee/employee-frontend
+    image: nginx-frontend
     build: 
       context: ./frontend
       args:
@@ -14,7 +14,7 @@ services:
       - backend
   
   backend:
-    image: pmckee/employee-backend
+    image: nginx-backend
     build:
       context: ./backend
     networks: 
