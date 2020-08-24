@@ -14,6 +14,7 @@ async function main() {
 
     const result = await server.start()
     console.info( result )
+		console.log( 'finally' )
 
 	} catch( error ) {
 		console.error( error )
