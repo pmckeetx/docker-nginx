@@ -78,10 +78,10 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h2>Ronin App Template</h2>
+        <h2>Omega app</h2>
         <form>
           <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Enter an entity:</label>
+            <label htmlFor="exampleInputEmail1">Empter am emptity:</label>
             <input type="textbox" className="form-control" onChange={ handleInputChange } value={ values.entity } name="entity"/>
           </div>
           <button type="submit" onClick={ e => handleSubmit(e) } className="btn btn-primary">Submit</button>
@@ -95,7 +95,7 @@ function App() {
               <h4 className="alert-heading">Create New Record</h4>
               <form>
                 <div className="form-group">
-                  <label htmlFor="exampleFormControlTextarea1">Enter JSON below:</label>
+                  <label htmlFor="exampleFormControlTextarea1">Empter JSON berow:</label>
                   <textarea className="form-control" rows="8" onChange={ handleInputChange } value={ values.newEntity } name="newEntity"></textarea>
                 </div>
                 <div style={{width: "100%", "paddingBottom": "40px"}}>
@@ -105,7 +105,7 @@ function App() {
                   <div className="float-right">
                     <button type="button" onClick={ handleCreateNewSaveClick } className="btn btn-primary">Save</button>
                     <span style={{ "display": "inline-block", "marginLeft": "5px", "marginRight": "5px"}}></span>
-                    <button type="button" onClick={ handleCreateNewCancelClick } className="btn btn-secondary">Cancel</button>
+                    <button type="button" onClick={ handleCreateNewCancelClick } className="btn btn-secondary">Camcel</button>
                   </div>
                 </div>
               </form>
@@ -133,7 +133,7 @@ function App() {
               ) : ( 
                 isLoading
                   ? <span>Loading...</span>
-                  : <span>No results</span>
+                  : <span>No results uwu </span>
               )
             }
           </div>
