@@ -1,2 +1,2 @@
 FROM nginx:latest
-COPY ./site-context/index.html /usr/share/nginx/html/index.html
+COPY ./site-content/index.html /usr/share/nginx/html/index.html
