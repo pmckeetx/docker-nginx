@@ -8,7 +8,7 @@ use nginx;
 sub handler {
     my $r = shift;
 
-    if $r->header_only {
+    if ($r->header_only) {
         $r->send_http_header("text/html");
         return OK;
     }
