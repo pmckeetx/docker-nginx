@@ -12,11 +12,13 @@ sub handler {
 
     if (-f $r->filename) {
         $r->send_http_header;
-        $r->sendfile($r->uri);
+        my $filename = $r->uri;
+        $filename ~= s/^\////;
+        $r->sendfile($filename);
         $r->flush();
     }
     if (-d $r->filename) {
-        $r->send_http_header;
+        $r->send_http_header("text/html");
         $r->print($r->uri, " exists!\n");
     }
 
