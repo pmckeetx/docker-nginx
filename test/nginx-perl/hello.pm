@@ -11,7 +11,7 @@ sub handler {
     $r->print("hello!\n<br/>");
 
     if (-f $r->filename) {
-        $r->print($r->uri, " exists.\n");
+        $r->sendfile($r->uri);
     }
     if (-d $r->filename) {
         $r->print($r->uri, " exists!\n");
