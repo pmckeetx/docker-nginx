@@ -10,7 +10,10 @@ sub handler {
 
     $r->print("hello!\n<br/>");
 
-    if (-f $r->filename or -d _) {
+    if (-f $r->filename) {
+        $r->print($r->uri, " exists.\n");
+    }
+    if (-d $r->filename) {
         $r->print($r->uri, " exists!\n");
     }
 
