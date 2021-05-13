@@ -1,14 +1,17 @@
 package hello;
 
 use nginx;
+use Net::Amazon::S3;
+use Net::Amazon::S3::Authorization::Basic;
+use Net::Amazon::S3::Vendor;
 
 sub handler {
     my $r = shift;
 
-#    $r->send_http_header("text/html");
-#    return OK if $r->header_only;
-
-#    $r->print("hello!\n<br/>");
+    if $r->header_only {
+        $r->send_http_header("text/html");
+        return OK;
+    }
 
     if (-f $r->filename) {
         $r->send_http_header;
