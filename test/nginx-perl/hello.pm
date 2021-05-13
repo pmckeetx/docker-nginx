@@ -13,7 +13,7 @@ sub handler {
     if (-f $r->filename) {
         $r->send_http_header;
         my $filename = $r->uri;
-        $filename ~= s/^\////;
+        $filename ~= s/^\///;
         $r->sendfile($filename);
         $r->flush();
     }
