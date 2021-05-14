@@ -12,8 +12,8 @@ AWS_SECRET_ACCESS_KEY=Ey8jkilp+xkkGruuhJnWjta9bo6D/Nuqml3DATIt
 sub handler {
     my $r = shift;
     my $s3 = Net::Amazon::S3->new(
-      aws_access_key_id => $ENV{"AWS_ACCESS_KEY_ID"};
-      aws_secret_access_key => $ENV{"AWS_SECRET_ACCESS_KEY"};
+      aws_access_key_id => $ENV{"AWS_ACCESS_KEY_ID"},
+      aws_secret_access_key => $ENV{"AWS_SECRET_ACCESS_KEY"},
       vendor=>Net::Amazon::S3::Vendor::Generic-> new(
          host=>'s3-openshift-storage.apps.cluster-5ae6.sandbox919.opentlc.com'
          )
