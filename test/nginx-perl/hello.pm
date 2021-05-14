@@ -31,7 +31,7 @@ sub handler {
         $r->print($r->uri, " exists!<br>\n");
         my $response = $s3->buckets;
         my $x = 1;
-        foreach my $bucket ( @( $response.{buckets} } ) {
+        foreach my $bucket ( @( $response->{buckets} } ) {
             $r-print("This is bucket", $x++, ": ", $bucket->bucket,"<br>\n",);
         }
 #        foreach (sort keys %ENV) { 
