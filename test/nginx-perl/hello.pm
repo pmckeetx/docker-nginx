@@ -20,6 +20,7 @@ sub handler {
         $r->sendfile($filename);
         $r->flush();
     }
+
     if (-d $r->filename) {
         $r->send_http_header("text/html");
         $r->print($r->uri, " exists!\n");
