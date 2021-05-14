@@ -35,13 +35,16 @@ sub handler {
         $r->print($r->uri, " exists!<br>\n");
         my $response = $s3->buckets;
         $r->print($s3->buckets, "buckets.<br>\n");
-        my $x = 1;
-        foreach my $bucket ( @{ $response->{buckets} } ) {
-            $r-print("This is bucket", $x++, ": ", $bucket->bucket,"<br>\n",);
-        }
-        foreach (sort keys %{$s3->buckets}) { 
-            $r->print("$_  =  $s3->buckets{$_}\n"); 
-        }
+	foreach my $bucket ( @{ $response->{buckets} } ) {
+	    print "You have a bucket: " . $bucket->bucket . "\n";
+	}
+#        my $x = 1;
+#        foreach my $bucket ( @{ $response->{buckets} } ) {
+#            $r-print("This is bucket", $x++, ": ", $bucket->bucket,"<br>\n",);
+#        }
+#        foreach (sort keys %{$s3->buckets}) { 
+#            $r->print("$_  =  $s3->{buckets}{$_}\n"); 
+#        }
 #        foreach (sort keys %ENV) { 
 #            $r->print("$_  =  $ENV{$_}\n"); 
 #        }
