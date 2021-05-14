@@ -33,6 +33,7 @@ sub handler {
         $r->send_http_header("text/html");
         $r->print($r->uri, " exists!<br>\n");
         my $response = $s3->buckets;
+        $r->print($s3->buckets, "buckets.<br>\n");
         my $x = 1;
         foreach my $bucket ( @{ $response->{buckets} } ) {
             $r-print("This is bucket", $x++, ": ", $bucket->bucket,"<br>\n",);
