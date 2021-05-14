@@ -23,9 +23,14 @@ sub handler {
     }
 
     my $filename = $r->uri;
-    my @response = $s3->buckets;
-	my $bucketname = $response[0]->bucket;
     $filename =~ s/^\///;
+
+    my @response = $s3->buckets;
+	my $bucketname;
+	foreach my $bucket ( @{ $response->{buckets} } ) {
+	    print "You have a bucket: " . $bucket->bucket . "\n";
+	    $bucketname = $s3->bucket($bucket->bucket);
+	}
 
     if (-f $r->filename) {
         $r->send_http_header;
