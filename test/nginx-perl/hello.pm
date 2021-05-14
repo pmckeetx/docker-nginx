@@ -6,9 +6,6 @@ use Net::Amazon::S3::Authorization::Basic;
 use Net::Amazon::S3::Vendor;
 use Net::Amazon::S3::Vendor::Generic;
 
-AWS_ACCESS_KEY_ID=ZXGuM56YDfLpvsjznf8O
-AWS_SECRET_ACCESS_KEY=Ey8jkilp+xkkGruuhJnWjta9bo6D/Nuqml3DATIt
-
 sub handler {
     my $r = shift;
     my $s3 = Net::Amazon::S3->new(
