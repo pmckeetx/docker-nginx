@@ -4,6 +4,7 @@ use nginx;
 use Net::Amazon::S3;
 use Net::Amazon::S3::Authorization::Basic;
 use Net::Amazon::S3::Vendor;
+use Net::Amazon::S3::Vendor::Generic;
 
 sub handler {
     my $r = shift;
