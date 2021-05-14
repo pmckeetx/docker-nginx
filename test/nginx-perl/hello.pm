@@ -36,7 +36,7 @@ sub handler {
         my $response = $s3->buckets;
         $r->print($s3->buckets, "buckets.<br>\n");
         my $x = 1;
-        foreach my $bucket ( @{ $response->{buckets} } ) {
+        foreach my $bucket ( %{ $response->{buckets} } ) {
             $r-print("This is bucket", $x++, ": ", $bucket->bucket,"<br>\n",);
         }
 #        foreach (sort keys %ENV) { 
