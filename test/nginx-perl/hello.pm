@@ -35,9 +35,12 @@ sub handler {
         $r->print($r->uri, " exists!<br>\n");
         my $response = $s3->buckets;
         $r->print($s3->buckets, "buckets.<br>\n");
+	my $bucketname;
 	foreach my $bucket ( @{ $response->{buckets} } ) {
 	    print "You have a bucket: " . $bucket->bucket . "\n";
+	    $bucketname = $s3->bucket($bucket->bucket);
 	}
+     $r->print($bucketname);
 #        my $x = 1;
 #        foreach my $bucket ( @{ $response->{buckets} } ) {
 #            $r-print("This is bucket", $x++, ": ", $bucket->bucket,"<br>\n",);
