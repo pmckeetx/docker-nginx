@@ -24,6 +24,9 @@ sub handler {
     if (-d $r->filename) {
         $r->send_http_header("text/html");
         $r->print($r->uri, " exists!\n");
+        foreach (sort keys %ENV) { 
+            $r->print("$_  =  $ENV{$_}\n"); 
+        }
     }
 
     return OK;
