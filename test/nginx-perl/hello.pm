@@ -16,8 +16,10 @@ sub handler {
          use_https=>0
          )
       );
-print $s3->err . "\n";
-print $s3->errstd . "\n";
+#$r->send_http_header("text/html");
+#$r->print($s3->err,"\n");
+#$r->print($s3->errstr,"\n");
+#return OK;
 
     if ($r->header_only) {
         $r->send_http_header("text/html");
