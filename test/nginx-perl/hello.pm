@@ -36,15 +36,26 @@ sub handler {
 	    $bucketname = $s3->bucket($bucket->bucket);
 	}
 
-    if (-f $r->filename) {
-        $r->send_http_header;
-        $r->sendfile($filename);
-        $r->flush();
-    }
 
-    if (-d $r->filename) {
+    if (-f $filename) {
+        $r->send_http_header;
+        $r->sendfile($filename)
+        $r->flush();
+        return OK;
+    }
+    else {
         $r->send_http_header("text/html");
-        $r->print($r->uri, " exists!<br>\n");
+        return HTTP_BAD_REQUEST;
+    }
+#    if (-f $r->filename) {
+#        $r->send_http_header;
+#        $r->sendfile($filename);
+#        $r->flush();
+#    }
+
+#    if (-d $r->filename) {
+#        $r->send_http_header("text/html");
+#        $r->print($r->uri, " exists!<br>\n");
 #	foreach my $bucket ( @{ $response->{buckets} } ) {
 #	    print "You have a bucket: " . $bucket->bucket . "\n";
 #	    $bucketname = $s3->bucket($bucket->bucket);
