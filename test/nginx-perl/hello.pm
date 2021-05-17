@@ -38,7 +38,6 @@ sub handler {
 #        $bucketname = $s3->bucket($bucket->bucket);
 #    }
 
-    $r->print($bucketname);
     if (-f $filename) {
         $r->send_http_header;
         $r->sendfile($filename);
@@ -49,8 +48,8 @@ sub handler {
         $r->send_http_header;
 print("HERE1\n");
         $r->print($bucketname);
-        $r->print($bucketname->err);
-        $r->print($bucketname->errstr);
+#        $r->print($bucketname->err);
+#        $r->print($bucketname->errstr);
 print("HERE2\n");
         $r->flush();
         return OK;
