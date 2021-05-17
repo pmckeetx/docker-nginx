@@ -44,7 +44,14 @@ sub handler {
         $r->flush();
         return OK;
     } else {
+        $r->send_http_header;
+print("HERE1\n");
         $r->print($bucketname);
+        $r->print($bucketname->err);
+        $r->print($bucketname->errstr);
+print("HERE2\n");
+        $r->flush();
+        return OK;
     }
     #file did not exist on the file system
     #attempt to download it from the bucket
