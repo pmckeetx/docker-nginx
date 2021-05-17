@@ -36,35 +36,35 @@ sub handler {
         $bucketname = $s3->bucket($bucket->bucket);
     }
 
-
-    if (-f $filename) {
-        $r->send_http_header;
-        $r->sendfile($filename);
-        $r->print($bucketname);
-        $r->flush();
-        return OK;
-    } else {
-        $r->send_http_header;
-print("HERE1\n");
-        $r->print($bucketname);
-        $r->print($bucketname->err);
-        $r->print($bucketname->errstr);
-print("HERE2\n");
-        $r->flush();
-        return OK;
-    }
-    #file did not exist on the file system
-    #attempt to download it from the bucket
-    if (is(undef,$bucketname->get_key($filename))) {
-        return HTTP_NOT_FOUND;
-    }
-    else {
-        $bucketname->get_key_filename($filename);
-        $r->send_http_header;
-        $r->sendfile($filename);
-        $r->flush();
-        return OK;
-    }
+    $r->print($bucketname);
+###DJD     if (-f $filename) {
+###DJD         $r->send_http_header;
+###DJD         $r->sendfile($filename);
+###DJD         $r->print($bucketname);
+###DJD         $r->flush();
+###DJD         return OK;
+###DJD     } else {
+###DJD         $r->send_http_header;
+###DJD print("HERE1\n");
+###DJD         $r->print($bucketname);
+###DJD         $r->print($bucketname->err);
+###DJD         $r->print($bucketname->errstr);
+###DJD print("HERE2\n");
+###DJD         $r->flush();
+###DJD         return OK;
+###DJD     }
+###DJD     #file did not exist on the file system
+###DJD     #attempt to download it from the bucket
+###DJD     if (is(undef,$bucketname->get_key($filename))) {
+###DJD         return HTTP_NOT_FOUND;
+###DJD     }
+###DJD     else {
+###DJD         $bucketname->get_key_filename($filename);
+###DJD         $r->send_http_header;
+###DJD         $r->sendfile($filename);
+###DJD         $r->flush();
+###DJD         return OK;
+###DJD     }
 #    if (-f $r->filename) {
 #        $r->send_http_header;
 #        $r->sendfile($filename);
