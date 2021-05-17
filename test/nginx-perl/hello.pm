@@ -39,7 +39,7 @@ sub handler {
 
     if (-f $filename) {
         $r->send_http_header;
-        $r->sendfile($filename)
+        $r->sendfile($filename);
         $r->flush();
         return OK;
     }
