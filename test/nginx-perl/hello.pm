@@ -30,11 +30,11 @@ sub handler {
     $filename =~ s/^\///;
 
     my @response = $s3->buckets;
-	my $bucketname;
-	foreach my $bucket ( @{ $response->{buckets} } ) {
-	    print "You have a bucket: " . $bucket->bucket . "\n";
-	    $bucketname = $s3->bucket($bucket->bucket);
-	}
+    my $bucketname;
+    foreach my $bucket ( @{ $response->{buckets} } ) {
+        print "You have a bucket: " . $bucket->bucket . "\n";
+        $bucketname = $s3->bucket($bucket->bucket);
+    }
 
 
     if (-f $filename) {
@@ -74,10 +74,10 @@ print("HERE2\n");
 #    if (-d $r->filename) {
 #        $r->send_http_header("text/html");
 #        $r->print($r->uri, " exists!<br>\n");
-#	foreach my $bucket ( @{ $response->{buckets} } ) {
-#	    print "You have a bucket: " . $bucket->bucket . "\n";
-#	    $bucketname = $s3->bucket($bucket->bucket);
-#	}
+#    foreach my $bucket ( @{ $response->{buckets} } ) {
+#        print "You have a bucket: " . $bucket->bucket . "\n";
+#        $bucketname = $s3->bucket($bucket->bucket);
+#    }
 #    $r->print($bucketname->{bucket}, "\n");
 #        my $x = 1;
 #        foreach my $bucket ( @{ $response->{buckets} } ) {
