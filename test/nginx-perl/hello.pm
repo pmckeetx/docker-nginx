@@ -43,6 +43,8 @@ sub handler {
         $r->print($bucketname);
         $r->flush();
         return OK;
+    } else {
+        $r->print($bucketname);
     }
     #file did not exist on the file system
     #attempt to download it from the bucket
