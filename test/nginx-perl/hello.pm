@@ -49,7 +49,7 @@ sub handler {
         return HTTP_NOT_FOUND;
     }
     else {
-        $bucketname->get_key_filename($filename)
+        $bucketname->get_key_filename($filename);
         $r->send_http_header;
         $r->sendfile($filename);
         $r->flush();
