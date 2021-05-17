@@ -42,27 +42,31 @@ sub handler {
         $r->send_http_header;
         $r->sendfile($filename);
         $r->print($bucketname);
+$r->print("HERE0\n");
         $r->flush();
         return OK;
     } else {
         $r->send_http_header;
-print("HERE1\n");
+$r->print("HERE1\n");
         $r->print($bucketname);
 #        $r->print($bucketname->err);
 #        $r->print($bucketname->errstr);
-print("HERE2\n");
+$r->print("HERE2\n");
         $r->flush();
         return OK;
     }
     #file did not exist on the file system
     #attempt to download it from the bucket
     if (is(undef,$bucketname->get_key($filename))) {
+$r->print("HERE3\n");
+        $r->flush();
         return HTTP_NOT_FOUND;
     }
     else {
         $bucketname->get_key_filename($filename);
         $r->send_http_header;
         $r->sendfile($filename);
+$r->print("HERE4\n");
         $r->flush();
         return OK;
     }
