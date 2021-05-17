@@ -45,7 +45,7 @@ sub handler {
     }
     #file did not exist on the file system
     #attempt to download it from the bucket
-    if (is(undef,$bucketname->get_key($filename)) {
+    if (is(undef,$bucketname->get_key($filename))) {
         return HTTP_NOT_FOUND;
     }
     else {
