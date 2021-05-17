@@ -46,6 +46,7 @@ $r->print("HERE0\n");
         $r->flush();
         return OK;
     } else {
+        # get_key then check to see if undef.  If it is send dummy stuff.  If not, then send the content type header and the contents
         $r->send_http_header;
 $r->print("HERE1\n");
         $r->print($bucketname);
