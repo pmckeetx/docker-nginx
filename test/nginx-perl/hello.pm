@@ -43,9 +43,17 @@ sub handler {
         $r->flush();
         return OK;
     }
+    #file did not exist on the file system
+    #attempt to download it from the bucket
+    if (is(undef,$bucketname->get_key($filename)) {
+        return HTTP_NOT_FOUND;
+    }
     else {
-        $r->send_http_header("text/html");
-        return HTTP_BAD_REQUEST;
+        $bucketname->get_key_filename($filename)
+        $r->send_http_header;
+        $r->sendfile($filename);
+        $r->flush();
+        return OK;
     }
 #    if (-f $r->filename) {
 #        $r->send_http_header;
