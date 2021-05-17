@@ -71,7 +71,7 @@ sub handler {
 #        foreach (sort keys %ENV) { 
 #            $r->print("$_  =  $ENV{$_}\n"); 
 #        }
-    }
+#    }
 
     return OK;
 }
