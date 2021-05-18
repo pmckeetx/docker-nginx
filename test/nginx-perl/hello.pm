@@ -16,10 +16,6 @@ sub handler {
          use_https=>0
          )
       );
-#$r->send_http_header("text/html");
-#$r->print($s3->err,"\n");
-#$r->print($s3->errstr,"\n");
-#return OK;
 
     if ($r->header_only) {
         $r->send_http_header("text/html");
@@ -31,86 +27,25 @@ sub handler {
 
     my @response = $s3->buckets;
     my @buckets = $response->{buckets};
-#    my $bucketname = $buckets[0];
     my $bucketname = $s3->bucket('s3proxy-2fd89031-eebf-4a09-a955-3a0b88ef0298');
     my $file;
-
-#    foreach my $bucket ( @{ $response->{buckets} } ) {
-#        print "You have a bucket: " . $bucket->bucket . "\n";
-#        $bucketname = $s3->bucket($bucket->bucket);
-#    }
 
     if (-f $filename) {
         $r->send_http_header;
         $r->sendfile($filename);
-$r->print("HERE\n");
-        $r->print(@buckets);
-        $r->print($filename);
-$r->print("\nHERE0\n");
         $r->flush();
         return OK;
     } else {
-        # get_key then check to see if undef.  If it is send dummy stuff.  If not, then send the content type header and the contents
-        $r->send_http_header;
         $file = $bucketname->get_key($filename);
         if ($file) {
-        $r->send_http_header($file->{content_type});
-        $r->print($file->{value});
-        return OK;
+            $r->send_http_header($file->{content_type});
+            $r->print($file->{value});
+            return OK;
         } else {
-$r->print("HERE6\n");
+            $r->send_http_header;
+            return HTTP_NOT_FOUND;
         }
-$r->print("HERE1\n");
-#        $r->print($bucketname);
-#        $r->print($bucketname->err);
-#        $r->print($bucketname->errstr);
-$r->print("HERE2\n");
-        $r->flush();
-        return OK;
     }
-    #file did not exist on the file system
-    #attempt to download it from the bucket
-    if (is(undef,$bucketname->get_key($filename))) {
-$r->print("HERE3\n");
-        $r->flush();
-        return HTTP_NOT_FOUND;
-    }
-    else {
-        $bucketname->get_key_filename($filename);
-        $r->send_http_header;
-        $r->sendfile($filename);
-$r->print("HERE4\n");
-        $r->flush();
-        return OK;
-    }
-
-#    if (-f $r->filename) {
-#        $r->send_http_header;
-#        $r->sendfile($filename);
-#        $r->flush();
-#    }
-
-#    if (-d $r->filename) {
-#        $r->send_http_header("text/html");
-#        $r->print($r->uri, " exists!<br>\n");
-#    foreach my $bucket ( @{ $response->{buckets} } ) {
-#        print "You have a bucket: " . $bucket->bucket . "\n";
-#        $bucketname = $s3->bucket($bucket->bucket);
-#    }
-#    $r->print($bucketname->{bucket}, "\n");
-#        my $x = 1;
-#        foreach my $bucket ( @{ $response->{buckets} } ) {
-#            $r-print("This is bucket", $x++, ": ", $bucket->bucket,"<br>\n",);
-#        }
-#        foreach (sort keys %{$s3->buckets}) { 
-#            $r->print("$_  =  $s3->{buckets}{$_}\n"); 
-#        }
-#        foreach (sort keys %ENV) { 
-#            $r->print("$_  =  $ENV{$_}\n"); 
-#        }
-#    }
-
-    return OK;
 }
 
 1;
