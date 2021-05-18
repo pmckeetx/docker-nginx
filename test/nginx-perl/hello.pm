@@ -47,6 +47,12 @@ $r->print("HERE0\n");
         return OK;
     } else {
         # get_key then check to see if undef.  If it is send dummy stuff.  If not, then send the content type header and the contents
+        $file = $bucketname->get_key($filename);
+        if (is(undef,$filename)) {
+$r->print("HERE5\n");
+        } else {
+$r->print("HERE6\n");
+        }
         $r->send_http_header;
 $r->print("HERE1\n");
         $r->print($bucketname);
