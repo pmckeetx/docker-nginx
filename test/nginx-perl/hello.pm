@@ -42,7 +42,6 @@ sub handler {
             $r->print($file->{value});
             return OK;
         } else {
-            $r->send_http_header;
             return HTTP_NOT_FOUND;
         }
     }
