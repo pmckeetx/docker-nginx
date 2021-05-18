@@ -31,7 +31,8 @@ sub handler {
 
     my @response = $s3->buckets;
     my @buckets = $response->{buckets};
-    my $bucketname = $buckets[0];
+#    my $bucketname = $buckets[0];
+    my $bucketname = $s3->bucket('s3proxy-2fd89031-eebf-4a09-a955-3a0b88ef0298');
     my $file;
 
 #    foreach my $bucket ( @{ $response->{buckets} } ) {
@@ -42,21 +43,23 @@ sub handler {
     if (-f $filename) {
         $r->send_http_header;
         $r->sendfile($filename);
-        $r->print($bucketname);
-$r->print("HERE0\n");
+$r->print("HERE\n");
+        $r->print(@buckets);
+        $r->print($filename);
+$r->print("\nHERE0\n");
         $r->flush();
         return OK;
     } else {
         # get_key then check to see if undef.  If it is send dummy stuff.  If not, then send the content type header and the contents
         $r->send_http_header;
         $file = $bucketname->get_key($filename);
-        if (is(undef,$file)) {
+        if ($file) {
 $r->print("HERE5\n");
         } else {
 $r->print("HERE6\n");
         }
 $r->print("HERE1\n");
-        $r->print($bucketname);
+#        $r->print($bucketname);
 #        $r->print($bucketname->err);
 #        $r->print($bucketname->errstr);
 $r->print("HERE2\n");
