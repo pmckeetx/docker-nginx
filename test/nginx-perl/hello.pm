@@ -12,8 +12,8 @@ sub handler {
       aws_access_key_id => $ENV{"AWS_ACCESS_KEY_ID"},
       aws_secret_access_key => $ENV{"AWS_SECRET_ACCESS_KEY"},
       vendor=>Net::Amazon::S3::Vendor::Generic-> new(
-         host=>'s3.openshift-storage.svc',
-         use_https=>0
+         host => $ENV{"S3_ENDPOINT"},
+         use_https => $ENV{"S3_HTTPS"}
          )
       );
 
@@ -26,8 +26,7 @@ sub handler {
     $filename =~ s/^\///;
 
     my @response = $s3->buckets;
-    my @buckets = $response->{buckets};
-    my $bucketname = $s3->bucket('s3proxy-2fd89031-eebf-4a09-a955-3a0b88ef0298');
+    my $bucketname = $s3->bucket($ENV{"S3_BUCKET_NAME"});
     my $file;
 
     if (-f $filename) {
