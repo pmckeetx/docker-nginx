@@ -54,7 +54,9 @@ $r->print("\nHERE0\n");
         $r->send_http_header;
         $file = $bucketname->get_key($filename);
         if ($file) {
-$r->print("HERE5\n");
+        $r->send_http_header($file->{content_type});
+        $r->print($file->{value});
+        return OK;
         } else {
 $r->print("HERE6\n");
         }
