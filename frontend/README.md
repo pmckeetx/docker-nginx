@@ -1,1 +1,1 @@
-# Smaple Ronin UI
+# Sample Ronin UI
