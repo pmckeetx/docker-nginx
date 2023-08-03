@@ -1,4 +1,4 @@
-FROM node:12.18.2 as build
+FROM node:14 as build
 
 ARG REACT_APP_SERVICES_HOST=/services/m
 
